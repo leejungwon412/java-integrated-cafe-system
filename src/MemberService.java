@@ -4,13 +4,18 @@ public class MemberService {
     ArrayList<Member> members = new ArrayList<>();
     Member currentMember = new Member();
 
-    public boolean signUp(Member member) {
+    public MemberService() {
+        members.add(new Admin("관리자", "admin123", "ad123"));
+    }
+
+
+    public boolean signUp(User user) {
         for (int i = 0; i < members.size(); i++) {
-            if (member.getId().equals(members.get(i).getId())) {
+            if (user.getId().equals(members.get(i).getId())) {
                 return false;
             }
         }
-        members.add(member);
+        members.add(user);
         return true;
     }
 
@@ -35,5 +40,9 @@ public class MemberService {
             return true;
         }
         return false;
+    }
+
+    public Member getCurrentMember() {
+        return currentMember;
     }
 }
