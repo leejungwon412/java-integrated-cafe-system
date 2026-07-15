@@ -1,3 +1,5 @@
+package member;
+
 import java.util.ArrayList;
 
 public class MemberService {
@@ -5,7 +7,7 @@ public class MemberService {
     Member currentMember = new Member();
 
     public MemberService() {
-        members.add(new Admin("관리자", "admin123", "ad123"));
+        members.add(new Admin("관리자", "ad", "ad", 1000000000));
     }
 
 
@@ -44,5 +46,9 @@ public class MemberService {
 
     public Member getCurrentMember() {
         return currentMember;
+    }
+
+    public int getCurrentBalance() {
+        return currentMember.getBalance();
     }
 }

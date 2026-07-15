@@ -1,3 +1,5 @@
+package menu;
+
 import java.util.ArrayList;
 
 public class MenuService {
@@ -44,5 +46,14 @@ public class MenuService {
             }
         }
         return false;
+    }
+
+    public Menu getMenuByName(String name) {
+        for (int i = 0; i < menus.size(); i++) {
+            if (menus.get(i).getName().equals(name)) {
+                return menus.get(i);
+            }
+        }
+        return null;
     }
 }
