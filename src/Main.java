@@ -17,6 +17,7 @@ public class Main {
         MemberService memberService = new MemberService();
         memberService.loadMembers();
         MenuService menuService = new MenuService();
+        menuService.loadMenus();
         OrderService orderService = new OrderService();
 
         boolean adminLogin = false;
@@ -231,6 +232,7 @@ public class Main {
                     // ----- 종료 -----
                     System.out.println("종료합니다.");
                     memberService.saveMembers();
+                    menuService.saveMenu();
                     break;
                 } else {
                     // ----- 잘못 입력했을 때 -----

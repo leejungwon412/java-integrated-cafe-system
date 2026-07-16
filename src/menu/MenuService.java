@@ -1,5 +1,6 @@
 package menu;
 
+import java.io.*;
 import java.util.ArrayList;
 
 public class MenuService {
@@ -55,5 +56,30 @@ public class MenuService {
             }
         }
         return null;
+    }
+
+    public void saveMenu() throws IOException {
+        BufferedWriter bw = new BufferedWriter(new FileWriter("menus.txt"));
+        for (int i = 0; i < menus.size(); i++) {
+            String line = menus.get(i).getName() + "," + menus.get(i).getPrice();
+            bw.write(line);
+            bw.newLine();
+        }
+        bw.close();
+    }
+
+    public void loadMenus() throws IOException {
+        File file = new File("menus.txt");
+        if (!file.exists()) {
+            return;
+        }
+        BufferedReader br = new BufferedReader(new FileReader("menus.txt"));
+        String line;
+        while ((line = br.readLine()) != null) {
+            String[] data = line.split(",");
+            Menu menu = new Menu(data[0], Integer.parseInt(data[1]));
+            menus.add(menu);
+        }
+        br.close();
     }
 }
