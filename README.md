@@ -138,7 +138,7 @@ git clone https://github.com/leejungwon412/java-integrated-cafe-system.git
 
 ## 📝 관련 글
 
-- [개발 회고 (Velog)](https://velog.io/@leejungwon412/JAVA-java-integrated-cafe-system-%EA%B0%9C%EB%B0%9C-%ED%9A%8C%EA%B3%A0#%EB%8A%90%EB%82%80-%EC%A0%90)
+- [개발 회고 (Velog)](https://velog.io/@leejungwon412/JAVA-java-integrated-cafe-system-%EA%B0%9C%EB%B0%9C-%ED%9A%8C%EA%B3%A0)
 
 ---
 
