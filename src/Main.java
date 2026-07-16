@@ -19,6 +19,7 @@ public class Main {
         MenuService menuService = new MenuService();
         menuService.loadMenus();
         OrderService orderService = new OrderService();
+        orderService.loadOrders(menuService);
 
         boolean adminLogin = false;
         boolean userLogin = false;
@@ -40,12 +41,12 @@ public class Main {
                     menuService.getMenu();
                     System.out.print("장바구니에 담을 메뉴 이름을 적으시오 : ");
                     String name = scanner.nextLine();
-                    System.out.print("구매할 개수를 적으시오 : ");
-                    int count = scanner.nextInt();
-                    scanner.nextLine();
                     if (menuService.getMenuByName(name) == null) {
                         System.out.println("없는 메뉴입니다.");
                     } else {
+                        System.out.print("구매할 개수를 적으시오 : ");
+                        int count = scanner.nextInt();
+                        scanner.nextLine();
                         CartItem cartItem = new CartItem(menuService.getMenuByName(name), count);
                         orderService.addCartItem(cartItem);
                     }
@@ -233,6 +234,7 @@ public class Main {
                     System.out.println("종료합니다.");
                     memberService.saveMembers();
                     menuService.saveMenu();
+                    orderService.saveOrders();
                     break;
                 } else {
                     // ----- 잘못 입력했을 때 -----
