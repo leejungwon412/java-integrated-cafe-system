@@ -7,11 +7,6 @@ public class MemberService {
     ArrayList<Member> members = new ArrayList<>();
     Member currentMember = null;
 
-    public MemberService() {
-        members.add(new Admin("관리자", "ad", "ad", 1000000000));
-    }
-
-
     public boolean signUp(User user) {
         for (int i = 0; i < members.size(); i++) {
             if (user.getId().equals(members.get(i).getId())) {
@@ -67,6 +62,7 @@ public class MemberService {
     public void loadMembers() throws IOException {
         File file = new File("members.txt");
         if (!file.exists()) {
+            members.add(new Admin("관리자", "ad", "ad", 1000000000));
             return;
         }
         BufferedReader br = new BufferedReader(new FileReader("members.txt"));
