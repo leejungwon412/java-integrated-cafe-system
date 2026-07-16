@@ -1,10 +1,11 @@
 package member;
 
+import java.io.*;
 import java.util.ArrayList;
 
 public class MemberService {
     ArrayList<Member> members = new ArrayList<>();
-    Member currentMember = new Member();
+    Member currentMember = null;
 
     public MemberService() {
         members.add(new Admin("관리자", "ad", "ad", 1000000000));
@@ -50,5 +51,36 @@ public class MemberService {
 
     public int getCurrentBalance() {
         return currentMember.getBalance();
+    }
+
+    public void saveMembers() throws IOException {
+        BufferedWriter bw = new BufferedWriter(new FileWriter("members.txt"));
+        for (int i = 0; i < members.size(); i++) {
+            String type = (members.get(i) instanceof Admin) ? "ADMIN" : "USER";
+            String line = members.get(i).getName() + "," + members.get(i).getId() + "," + members.get(i).getPw() + "," + members.get(i).getBalance() + "," + type;
+            bw.write(line);
+            bw.newLine();
+        }
+        bw.close();
+    }
+
+    public void loadMembers() throws IOException {
+        File file = new File("members.txt");
+        if (!file.exists()) {
+            return;
+        }
+        BufferedReader br = new BufferedReader(new FileReader("members.txt"));
+        String line;
+        while ((line = br.readLine()) != null) {
+            String[] data = line.split(",");
+            if (data[4].equals("ADMIN")) {
+                Admin admin = new Admin(data[0], data[1], data[2], Integer.parseInt(data[3]));
+                members.add(admin);
+            } else {
+                User user = new User(data[0], data[1], data[2], Integer.parseInt(data[3]));
+                members.add(user);
+            }
+        }
+        br.close();
     }
 }

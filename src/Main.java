@@ -7,13 +7,15 @@ import order.CartItem;
 import order.Order;
 import order.OrderService;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
 
         MemberService memberService = new MemberService();
+        memberService.loadMembers();
         MenuService menuService = new MenuService();
         OrderService orderService = new OrderService();
 
@@ -228,6 +230,7 @@ public class Main {
                 } else if (p1.equals("3")) {
                     // ----- 종료 -----
                     System.out.println("종료합니다.");
+                    memberService.saveMembers();
                     break;
                 } else {
                     // ----- 잘못 입력했을 때 -----
